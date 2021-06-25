@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+console.log(process.argv);
+
 const execSync = require('child_process').execSync;
 const fs = require('fs');
 
@@ -18,7 +20,18 @@ const tasks = [
     `git push origin ${version}`
 ];
 
+if (process.argv.length === 3) { // [ '/usr/local/bin/node', '/usr/local/bin/jwtag', 'patch' ]
+    const versionAction = process.argv[2];
+    const actions = ['patch', 'minor', 'major'];
+    if (!actions.includes(versionAction)) {
+        console.error(`参数不对，必须是【${actions.join('、')}】其中之一`);
+        process.exit(1);
+    }
+    tasks.unshift(`npm version ${versionAction}`);
+}
+
 tasks.forEach((str) => {
+    console.log(`任务【${str}】开始！`);
     execSync(str);
     console.log(`任务【${str}】完成！`);
 });

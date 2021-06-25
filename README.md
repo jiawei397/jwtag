@@ -11,3 +11,11 @@ npm i -g jwtag
 ```
 jwtag
 ```
+
+如果要使用`npm version`更新版本号，可以添加一个参数：
+
+```
+jwtag patch
+jwtag minor
+jwtag major
+```
