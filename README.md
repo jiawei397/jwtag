@@ -19,3 +19,12 @@ jwtag patch
 jwtag minor
 jwtag major
 ```
+
+如果想自定义提交信息，可以再加一个参数：
+```
+jwtag patch "feat: xxx"
+```
+或者
+```
+jwtag "feat: xxx"
+```
